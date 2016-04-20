@@ -32,12 +32,19 @@ app.set('view engine', 'ejs');
 app.io.on('connection', function(socket){
   console.log('a user has connected');
 
-  socket.on('new message', function(msg){
+
+   socket.on('chat message', function(msg){
       console.log('users sent this message: ' + msg);
       app.io.emit('chat message' , msg);
   });
 
+
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+
 });
+
 //socket io ends
 // **************************************************
 
